@@ -1,13 +1,14 @@
-﻿namespace Test.ShopCart;
+﻿using App.ShopCart;
+
+namespace Test.ShopCart;
 public class UnitTest
 {
     [Fact]
-    public void Check_InsertItemOnShopCart()
+    public void Check_InsertItemOnShoppingCart()
     {
-        //AAA
         //Arrange
         var item = new Item("Shirt", 29.99, 1);
-        var shopCart = new ShopCart();
+        var shopCart = new ShoppingCart();
 
         //Act
         shopCart.InsertItem(item);
