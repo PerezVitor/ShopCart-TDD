@@ -10,7 +10,8 @@ public class ShoppingCart
 
     public void InsertItem(Item item)
     {
-        Itens.Add(item);
+        var newItem = new Item(item.Name, item.Price, item.Quantity);
+        Itens.Add(newItem);
     }
 
     public bool RemoveItem(Item item)

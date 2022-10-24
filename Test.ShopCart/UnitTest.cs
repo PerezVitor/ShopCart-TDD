@@ -3,32 +3,44 @@
 namespace Test.ShopCart;
 public class UnitTest
 {
+    private Item ItemShop { get; set; }
+    private ShoppingCart ShoppingCart { get; set; }
+
+    public UnitTest()
+    {
+        ItemShop = new Item("Shirt", 29.99, 1);
+        ShoppingCart = new ShoppingCart();
+    }
+
     [Fact]
     public void Check_InsertItemOnShoppingCart()
     {
-        //Arrange
-        var item = new Item("Shirt", 29.99, 1);
-        var shopCart = new ShoppingCart();
+        ShoppingCart.InsertItem(ItemShop);
+        var item = ShoppingCart.Itens.FirstOrDefault(i => i.Name == ItemShop.Name);
 
-        //Act
-        shopCart.InsertItem(item);
-
-        //Assert
-        Assert.Contains(item, shopCart.Itens);
+        Assert.NotNull(item);
     }
 
     [Fact]
     public void Check_RemoveItemFromShoppingCart()
     {
-        //Arrange
-        var item = new Item("Shirt", 29.99, 1);
-        var shopCart = new ShoppingCart();
-        shopCart.InsertItem(item);
+        ShoppingCart.InsertItem(ItemShop);
+        var item = ShoppingCart.Itens.First(i => i.Name == ItemShop.Name);
 
-        //Act
-        bool itemRemoved = shopCart.RemoveItem(item);
+        bool itemRemoved = ShoppingCart.RemoveItem(item);
 
-        //Assert
         Assert.True(itemRemoved);
+    }
+
+    [Fact]
+    public void Check_ChangeQuantityItemOnShoppingCart()
+    {
+        ShoppingCart.InsertItem(ItemShop);
+        ItemShop.Quantity += 2;
+
+        //ShoppingCart.UpdateQuantityItem(ItemShop.Name, ItemShop.Quantity);
+        int quantity = ShoppingCart.Itens.First(i => i.Name == ItemShop.Name).Quantity;
+
+        Assert.Equal(ItemShop.Quantity, quantity);
     }
 }
