@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace App.ShopCart;
+﻿namespace App.ShopCart;
 public class ShoppingCart
 {
     public List<Item> Itens { get; set; }
@@ -17,5 +11,10 @@ public class ShoppingCart
     public void InsertItem(Item item)
     {
         Itens.Add(item);
+    }
+
+    public bool RemoveItem(Item item)
+    {
+        return Itens.Remove(item);
     }
 }

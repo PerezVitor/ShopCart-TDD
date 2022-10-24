@@ -26,9 +26,9 @@ public class UnitTest
         shopCart.InsertItem(item);
 
         //Act
-        shopCart.RemoveItem(item);
+        bool itemRemoved = shopCart.RemoveItem(item);
 
         //Assert
-        Assert.DoesNotContain(item, shopCart.Itens);
+        Assert.True(itemRemoved);
     }
 }
