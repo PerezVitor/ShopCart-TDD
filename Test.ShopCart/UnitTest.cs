@@ -36,11 +36,12 @@ public class UnitTest
     public void Check_ChangeQuantityItemOnShoppingCart()
     {
         ShoppingCart.InsertItem(ItemShop);
-        ItemShop.Quantity += 2;
+        int additionalQuantity = 2;
+        ItemShop.Quantity += additionalQuantity;
 
-        //ShoppingCart.UpdateQuantityItem(ItemShop.Name, ItemShop.Quantity);
-        int quantity = ShoppingCart.Itens.First(i => i.Name == ItemShop.Name).Quantity;
+        ShoppingCart.UpdateQuantityItem(ItemShop.Name, additionalQuantity);
+        var item = ShoppingCart.Itens.First(i => i.Name == ItemShop.Name);
 
-        Assert.Equal(ItemShop.Quantity, quantity);
+        Assert.Equal(ItemShop.Quantity, item.Quantity);
     }
 }

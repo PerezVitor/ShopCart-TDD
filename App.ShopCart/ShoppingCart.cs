@@ -18,4 +18,10 @@ public class ShoppingCart
     {
         return Itens.Remove(item);
     }
+
+    public void UpdateQuantityItem(string name, int quantity)
+    {
+        var item = Itens.First(x => x.Name == name);
+        item.Quantity += quantity;
+    }
 }
